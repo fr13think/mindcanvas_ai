@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-load_dotenv() # Memuat variabel dari .env
+load_dotenv()
 
 import os
 import random
@@ -7,10 +7,14 @@ from datetime import datetime, timedelta, timezone
 from flask import Flask, request, jsonify, render_template, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from llm_service import analyze_journal_entry
+from whitenoise import WhiteNoise
 
 # --- Konfigurasi Aplikasi dan Database ---
 app = Flask(__name__)
+app.wsgi_app = WhiteNoise(app.wsgi_app, root="static/", prefix="static/")
+
 DATA_DIR = os.environ.get('RENDER_DISK_PATH', os.path.abspath(os.path.dirname(__file__)))
+
 if not os.path.exists(DATA_DIR):
     os.makedirs(DATA_DIR)
 DB_PATH = os.path.join(DATA_DIR, 'journal.db')

@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: mind-canvas
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: RENDER_DISK_PATH
+        value: /var/data
+    disks:
+      - name: mind-canvas-db
+        mountPath: /var/data
+        sizeGB: 1

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Canvas - Jurnal AI Anda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Mind Canvas</h1>
+            <p>Tuliskan pikiran Anda. Temukan wawasan tersembunyi.</p>
+        </header>
+        <main>
+            <div class="journal-area">
+                <textarea id="journal-input" placeholder="Apa yang ada di pikiranmu hari ini?"></textarea>
+                <div class="connection-options">
+                    <label>Hubungkan dengan jurnal dari:</label>
+                    <div class="button-group">
+                        <button class="timeframe-btn active" data-timeframe="random">Acak</button>
+                        <button class="timeframe-btn" data-timeframe="1h">1 Jam Lalu</button>
+                        <button class="timeframe-btn" data-timeframe="1d">Kemarin</button>
+                    </div>
+                </div>
+                <button id="analyze-button">Analisis Kanvas Pikiran Saya</button>
+            </div>
+            <div id="results-area" class="hidden">
+                <div id="loader" class="hidden"></div>
+                <h2>Refleksi Anda Hari Ini</h2>
+                <div class="result-grid">
+                    <div class="result-card">
+                        <h3>Inti Pikiran</h3>
+                        <p id="summary-output"></p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Pola Pikir</h3>
+                        <p id="pattern-output"></p>
+                    </div>
+                    <div class="result-card full-width">
+                        <h3>Saran Aksi Konkret</h3>
+                        <p id="suggestion-output" class="insight"></p>
+                    </div>
+                    <div class="result-card full-width">
+                        <h3>🔗 Koneksi Jurnal</h3>
+                        <p id="connection-output"></p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Sentimen Dominan</h3>
+                        <p id="sentiment-output" class="badge"></p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Topik Utama</h3>
+                        <p id="topics-output"></p>
+                    </div>
+                </div>
+                 <p class="disclaimer">Ingat: Mind Canvas adalah alat bantu refleksi, bukan pengganti saran medis atau psikologis profesional.</p>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -4,3 +4,4 @@ __pycache__/
 .env
 journal.db
 check_env.py
+.venv

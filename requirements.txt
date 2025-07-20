@@ -6,3 +6,4 @@ openai
 langdetect
 requests
 whitenoise
+gevent

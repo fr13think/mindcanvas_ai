@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 .env
 journal.db
+check_env.py

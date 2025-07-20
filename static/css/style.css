@@ -39,3 +39,32 @@ button#analyze-button:hover { background-color: #374550; }
 .timeframe-btn:not(:last-child) { border-right: 1px solid #EAE8E6; }
 .timeframe-btn.active { background-color: var(--accent-color); color: white; }
 .full-width { grid-column: 1 / -1; }
+.greeting {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+}
+
+pre#meter-output {
+    font-family: monospace;
+    font-size: 1rem;
+    line-height: 1.8;
+    background-color: #f9f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    white-space: pre;
+}
+
+.nugget {
+    background-color: #f8f7f5;
+    border-left: 5px solid var(--accent-color);
+    text-align: center;
+}
+
+.nugget p {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+}

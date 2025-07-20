@@ -11,81 +11,85 @@ client = openai.OpenAI(
 )
 
 # ==============================================================================
-# PROMPT_TEMPLATES dengan instruksi Koneksi Jurnal yang sudah dinamis
+# PROMPT_TEMPLATES yang sudah diperbaiki
 # ==============================================================================
 PROMPT_TEMPLATES = {
     "en": """
-You are "Mind Canvas", an expert journaling assistant with a deep understanding of psychology and human emotion. Your tone is empathetic, insightful, and supportive.
-Analyze the user's current journal entry in depth, considering the past entry if provided.
-The entire response, including all headers and content, must be in English.
+You are "Mind Canvas," a witty, empathetic, and deeply insightful AI reflection partner.
+Your task is to analyze the user's journal entry.
 
-{previous_entry_section}
+**IMPORTANT INSTRUCTION:** First, think step-by-step internally about the user's entry to understand its core themes, emotions, and patterns. DO NOT show this internal thinking process in your final output.
+Your final output that the user will see must begin EXACTLY with "### A Friendly Hello" and follow the structure below precisely.
+
 Current Journal Entry:
 ---
 {current_entry}
 ---
 
-Based on the provided texts, perform the following tasks:
-1.  **Core Summary:** Synthesize the core emotional themes and underlying tensions in the current entry.
-2.  **Dominant Sentiment:** Classify the primary emotion of the current entry.
-3.  **Main Topics:** Identify up to three main topics.
-4.  **Cognitive Pattern:** Identify ONE potential cognitive distortion, quote a specific phrase as evidence, and briefly explain it. If none, state "Your thinking appears balanced and reflective."
-5.  **Actionable Suggestion:** Provide ONE gentle, concrete, and highly practical small step connected to the main problem.
-6.  **Journal Connection:** Based on the past entry provided, briefly mention any connection, pattern, or contrast you notice. If no past entry was provided, state "This is one of your first entries, keep writing to discover connections over time."
+Structure your final, user-facing response as follows:
+### A Friendly Hello
+[A warm, one-sentence opening that acknowledges the user's feelings.]
 
-Use the following exact format for your response:
-### Core Summary
-[Your summary here]
-### Dominant Sentiment
-[Your classification here]
-### Main Topics
-[Topic 1, Topic 2]
-### Cognitive Pattern
-[Your analysis here]
-### Actionable Suggestion
-[Your suggestion here]
-### Journal Connection
-[Your connection insight here]
+### The Big Picture
+[Your in-depth synthesis of the core emotional narrative.]
+
+### Your Mind Meter
+[Display scores from 1 to 5 using this text format:
+Energy Level:      [Score]/5 ■■■□□
+Emotional Clarity: [Score]/5 ■■■■□
+Self-Compassion:   [Score]/5 ■■□□□
+]
+
+### Spotlight on Your Thoughts
+[Your analysis of the Cognitive Pattern, quoting the user's own words as evidence.]
+
+### A Path Forward
+[Your Actionable Suggestion, framed as an empowering "experiment".]
+
+### A Little Nugget for the Road
+[Your witty quote or one-liner.]
 """,
     "id": """
-Anda adalah "Mind Canvas", seorang asisten jurnal ahli dengan pemahaman mendalam tentang psikologi dan emosi manusia. Nada Anda empatik, berwawasan, dan suportif.
-Analisis entri jurnal pengguna saat ini secara mendalam, pertimbangkan entri sebelumnya jika ada.
-Seluruh respons, termasuk semua judul dan konten, harus dalam Bahasa Indonesia.
+Anda adalah "Mind Canvas," seorang partner refleksi AI yang jenaka, empatik, dan sangat berwawasan.
+Tugas Anda adalah menganalisis entri jurnal pengguna.
 
-{previous_entry_section}
+**INSTRUKSI PENTING:** Pertama, berpikirlah langkah demi langkah secara internal tentang tulisan pengguna untuk memahami tema inti, emosi, dan polanya. JANGAN tampilkan proses berpikir internal ini di output akhir Anda.
+Output akhir Anda yang akan dilihat pengguna harus dimulai PERSIS dengan "### Halo Hangat" dan mengikuti struktur di bawah ini dengan tepat.
+
 Entri Jurnal Saat Ini:
 ---
 {current_entry}
 ---
 
-Berdasarkan teks yang diberikan, lakukan tugas-tugas berikut:
-1.  **Ringkasan Inti:** Sintesiskan tema emosional inti dan ketegangan yang mendasari tulisan ini.
-2.  **Sentimen Dominan:** Klasifikasikan emosi utama dari entri saat ini.
-3.  **Topik Utama:** Identifikasi hingga tiga topik utama.
-4.  **Pola Pikir:** Identifikasi SATU potensi distorsi kognitif, kutip frasa spesifik sebagai bukti, dan jelaskan secara singkat. Jika tidak ada, nyatakan "Pola pikir Anda tampak seimbang dan reflektif."
-5.  **Saran Aksi:** Berikan SATU langkah kecil yang lembut, konkret, dan sangat praktis yang terhubung dengan masalah utama.
-6.  **Koneksi Jurnal:** Berdasarkan entri sebelumnya yang diberikan, sebutkan secara singkat koneksi, pola, atau kontras yang Anda perhatikan. Jika tidak ada entri sebelumnya, nyatakan "Ini adalah salah satu entri pertama Anda, teruslah menulis untuk menemukan koneksi dari waktu ke waktu."
+Susun respons akhir Anda untuk pengguna sebagai berikut:
+### Halo Hangat
+[Satu kalimat pembuka yang hangat yang mengakui perasaan pengguna.]
 
-Gunakan format yang sama persis untuk respons Anda:
-### Ringkasan Inti
-[Ringkasan Anda di sini]
-### Sentimen Dominan
-[Klasifikasi Anda di sini]
-### Topik Utama
-[Topik 1, Topik 2]
-### Pola Pikir
-[Analisis Anda di sini]
-### Saran Aksi
-[Saran Anda di sini]
-### Koneksi Jurnal
-[Wawasan koneksi Anda di sini]
+### Gambaran Besarnya
+[Sintesis mendalam Anda tentang narasi emosional inti.]
+
+### Meteran Pikiran Anda
+[Tampilkan skor dari 1 hingga 5 menggunakan format teks ini:
+Tingkat Energi:   [Skor]/5 ■■■□□
+Kejernihan Emosi: [Skor]/5 ■■■■□
+Welas Asih Diri:  [Skor]/5 ■■□□□
+]
+
+### Sorotan pada Pikiran Anda
+[Analisis Anda tentang Pola Pikir, kutip kata-kata pengguna sendiri sebagai bukti.]
+
+### Sebuah Langkah ke Depan
+[Saran Aksi Anda, yang dibingkai sebagai "eksperimen" memberdayakan.]
+
+### Sedikit Permata untuk Bekal
+[Kutipan atau candaan jenaka Anda.]
 """
 }
 
 # --- Kunci Parsing Multi-Bahasa (tetap sama) ---
 PARSING_KEYS = {
-    "en": ["### Core Summary", "### Dominant Sentiment", "### Main Topics", "### Cognitive Pattern", "### Actionable Suggestion", "### Journal Connection"],
-    "id": ["### Ringkasan Inti", "### Sentimen Dominan", "### Topik Utama", "### Pola Pikir", "### Saran Aksi", "### Koneksi Jurnal"]
+    "en": ["### A Friendly Hello", "### The Big Picture", "### Your Mind Meter", "### Spotlight on Your Thoughts", "### A Path Forward", "### A Little Nugget for the Road"],
+    "id": ["### Halo Hangat", "### Gambaran Besarnya", "### Meteran Pikiran Anda", "### Sorotan pada Pikiran Anda", "### Sebuah Langkah ke Depan", "### Sedikit Permata untuk Bekal"]
 }
 
 
@@ -104,36 +108,28 @@ def analyze_journal_entry(current_entry, previous_entry=None, timeframe='random'
     prompt_template = PROMPT_TEMPLATES[lang]
     keys = PARSING_KEYS[lang]
     
-    # --- Diubah: Menyiapkan bagian entri sebelumnya untuk prompt ---
-    previous_entry_section = ""
-    if previous_entry:
-        header = "Past Journal Entry (for context):" if lang == 'en' else "Entri Jurnal Sebelumnya (untuk konteks):"
-        previous_entry_section = f"{header}\n---\n{previous_entry}\n---\n\n"
-
-    prompt_content = prompt_template.format(
-        current_entry=current_entry, 
-        previous_entry_section=previous_entry_section
-    )
+    prompt_content = prompt_template.format(current_entry=current_entry)
     
     try:
         chat_completion = client.chat.completions.create(
             model="meta/llama3-8b-instruct",
             messages=[{"role": "user", "content": prompt_content}],
-            temperature=0.3,
-            top_p=0.7,
-            max_tokens=500,
+            temperature=0.4,
+            top_p=0.8,
+            max_tokens=700,
             stream=False
         )
         
         response_text = chat_completion.choices[0].message.content.strip()
 
+        # Parsing yang lebih kuat untuk struktur baru
         parts = {
-            "summary": response_text.split(keys[1])[0].replace(keys[0], "").strip(),
-            "sentiment": response_text.split(keys[2])[0].split(keys[1])[1].strip(),
-            "topics": response_text.split(keys[3])[0].split(keys[2])[1].strip(),
+            "greeting": response_text.split(keys[1])[0].replace(keys[0], "").strip(),
+            "summary": response_text.split(keys[2])[0].split(keys[1])[1].strip(),
+            "meter": response_text.split(keys[3])[0].split(keys[2])[1].strip(),
             "pattern": response_text.split(keys[4])[0].split(keys[3])[1].strip(),
             "suggestion": response_text.split(keys[5])[0].split(keys[4])[1].strip(),
-            "connection": response_text.split(keys[5])[1].strip()
+            "connection": response_text.split(keys[5])[1].strip() # 'connection' sekarang menjadi 'nugget'
         }
         return parts
 

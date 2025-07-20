@@ -16,52 +16,52 @@
             <h1>🎨 Mind Canvas</h1>
             <p>Tuliskan pikiran Anda. Temukan wawasan tersembunyi.</p>
         </header>
+
         <main>
             <div class="journal-area">
                 <textarea id="journal-input" placeholder="Apa yang ada di pikiranmu hari ini?"></textarea>
-                <div class="connection-options">
-                    <label>Hubungkan dengan jurnal dari:</label>
-                    <div class="button-group">
-                        <button class="timeframe-btn active" data-timeframe="random">Acak</button>
-                        <button class="timeframe-btn" data-timeframe="1h">1 Jam Lalu</button>
-                        <button class="timeframe-btn" data-timeframe="1d">Kemarin</button>
-                    </div>
-                </div>
+                <!-- Tombol Pilihan Koneksi Jurnal Dihapus untuk menyederhanakan prompt baru -->
                 <button id="analyze-button">Analisis Kanvas Pikiran Saya</button>
             </div>
+
             <div id="results-area" class="hidden">
                 <div id="loader" class="hidden"></div>
-                <h2>Refleksi Anda Hari Ini</h2>
+                
+                <!-- Struktur Hasil Baru yang Lebih Kaya -->
+                <div id="greeting-output" class="greeting"></div>
+                
                 <div class="result-grid">
-                    <div class="result-card">
-                        <h3>Inti Pikiran</h3>
+                    <div class="result-card full-width">
+                        <!-- Judul ini akan diisi secara dinamis oleh AI -->
+                        <h3 id="summary-title">Gambaran Besarnya</h3>
                         <p id="summary-output"></p>
                     </div>
                     <div class="result-card">
-                        <h3>Pola Pikir</h3>
+                        <!-- Judul ini akan diisi secara dinamis oleh AI -->
+                        <h3 id="meter-title">Meteran Pikiran Anda</h3>
+                        <pre id="meter-output"></pre>
+                    </div>
+                    <div class="result-card">
+                        <!-- Judul ini akan diisi secara dinamis oleh AI -->
+                        <h3 id="pattern-title">Sorotan pada Pikiran Anda</h3>
                         <p id="pattern-output"></p>
                     </div>
                     <div class="result-card full-width">
-                        <h3>Saran Aksi Konkret</h3>
+                        <!-- Judul ini akan diisi secara dinamis oleh AI -->
+                        <h3 id="suggestion-title">Sebuah Langkah ke Depan</h3>
                         <p id="suggestion-output" class="insight"></p>
                     </div>
-                    <div class="result-card full-width">
-                        <h3>🔗 Koneksi Jurnal</h3>
-                        <p id="connection-output"></p>
-                    </div>
-                    <div class="result-card">
-                        <h3>Sentimen Dominan</h3>
-                        <p id="sentiment-output" class="badge"></p>
-                    </div>
-                    <div class="result-card">
-                        <h3>Topik Utama</h3>
-                        <p id="topics-output"></p>
+                    <div class="result-card full-width nugget">
+                        <!-- Judul ini akan diisi secara dinamis oleh AI -->
+                        <h3 id="nugget-title">Sedikit Permata untuk Bekal</h3>
+                        <p id="connection-output"></p> <!-- ID ini tetap digunakan untuk 'nugget' -->
                     </div>
                 </div>
                  <p class="disclaimer">Ingat: Mind Canvas adalah alat bantu refleksi, bukan pengganti saran medis atau psikologis profesional.</p>
             </div>
         </main>
     </div>
+
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

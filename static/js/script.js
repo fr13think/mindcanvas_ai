@@ -21,12 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('loader');
     
     const outputs = {
+        greeting: document.getElementById('greeting-output'),
         summary: document.getElementById('summary-output'),
-        insight: document.getElementById('suggestion-output'), // Note: this maps to suggestion now
-        sentiment: document.getElementById('sentiment-output'),
-        topics: document.getElementById('topics-output'),
-        connection: document.getElementById('connection-output'),
-        pattern: document.getElementById('pattern-output')
+        meter: document.getElementById('meter-output'),
+        pattern: document.getElementById('pattern-output'),
+        suggestion: document.getElementById('suggestion-output'),
+        connection: document.getElementById('connection-output') // Ini sekarang untuk 'nugget'
     };
 
     analyzeButton.addEventListener('click', async () => {
@@ -56,13 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.result-grid').style.display = 'grid';
             document.querySelector('.disclaimer').style.display = 'block';
 
+            outputs.greeting.textContent = result.greeting || '';
             outputs.summary.textContent = result.summary || 'N/A';
-            outputs.sentiment.textContent = result.sentiment || 'N/A';
-            outputs.topics.textContent = result.topics || 'N/A';
+            outputs.meter.textContent = result.meter || 'N/A';
             outputs.pattern.textContent = result.pattern || 'N/A';
-            outputs.insight.textContent = result.suggestion || 'N/A';
+            outputs.suggestion.textContent = result.suggestion || 'N/A';
             outputs.connection.textContent = result.connection || 'N/A';
-
+            
         } catch (error) {
             loader.classList.add('hidden');
             outputs.summary.textContent = `Gagal menganalisis: ${error.message}`;

@@ -4,7 +4,9 @@ services:
     env: python
     plan: free
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn --timeout 180 app:app"
+    # Diubah: Menambahkan --workers 1 untuk mengurangi penggunaan RAM
+    # dan mempertahankan timeout yang panjang.
+    startCommand: "gunicorn --workers 1 --timeout 180 app:app"
     healthCheckPath: /
     envVars:
       - key: PYTHON_VERSION

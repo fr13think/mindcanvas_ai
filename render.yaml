@@ -4,9 +4,10 @@ services:
     env: python
     plan: free
     buildCommand: "pip install -r requirements.txt"
-    # Diubah: Menambahkan --workers 1 untuk mengurangi penggunaan RAM
-    # dan mempertahankan timeout yang panjang.
-    startCommand: "gunicorn --workers 1 --timeout 180 app:app"
+    # Diubah: Menggunakan worker 'gevent' yang lebih baik untuk menangani
+    # permintaan API yang berjalan lama dan mencegah timeout.
+    # Ini adalah perbaikan yang paling penting.
+    startCommand: "gunicorn --worker-class gevent --workers 1 --timeout 180 app:app"
     healthCheckPath: /
     envVars:
       - key: PYTHON_VERSION

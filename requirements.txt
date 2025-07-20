@@ -6,4 +6,5 @@ openai
 langdetect
 requests
 whitenoise
-gevent
+psycopg2-binary
+gevent 
